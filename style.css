@@ -53,6 +53,22 @@ section {
   transform-origin: 100% 0;
 }
 
+.nameInputDialog[open] {
+  background-color: rgb(36, 34, 34);
+  border: none;
+  border-radius: 5px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  color: rgb(86, 245, 190);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: larger;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 .resultInputDialog[open] {
   background-color: rgb(36, 34, 34);
   border: none;

@@ -57,7 +57,7 @@ playerName.forEach((el) => {
     input.value = "";
     dialogPlayer.show();
     input.focus();
-    console.log(el);
+    console.log(currentElement);
   });
 });
 

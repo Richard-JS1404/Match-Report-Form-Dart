@@ -110,6 +110,7 @@ function applyResult() {
   matchResults[roundId] = { home: homeScore, guest: guestScore };
 
   // Spielerfeld aktualisieren
+
   currentResult.textContent =
     currentResult.textContent + `${homeScore}:${guestScore}`;
 
