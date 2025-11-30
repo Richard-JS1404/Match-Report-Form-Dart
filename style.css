@@ -1,0 +1,252 @@
+* {
+  margin: 0;
+}
+
+body {
+  background-color: rgba(59, 54, 54, 0.728);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
+
+section {
+  background-color: rgb(35, 41, 39);
+  display: flex;
+  justify-content: center;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.diagonal-strike {
+  position: relative;
+  overflow: hidden;
+}
+
+.diagonal-strike::before,
+.diagonal-strike::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150%;
+  height: 2px;
+  background: red;
+  pointer-events: none;
+}
+
+/* Strich von oben links → unten rechts */
+.diagonal-strike::after {
+  transform: rotate(8deg);
+  transform-origin: 0 0;
+}
+
+/* Strich von oben rechts → unten links */
+.diagonal-strike::before {
+  transform: rotate(-4.5deg);
+  transform-origin: 100% 0;
+}
+
+.resultInputDialog[open] {
+  background-color: rgb(36, 34, 34);
+  border: none;
+  border-radius: 5px;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  color: rgb(86, 245, 190);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: larger;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.resultInput {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background-color: rgb(121, 118, 118);
+  border-style: inherit;
+  border-radius: 5px;
+  text-align: center;
+  color: blue;
+  font-size: large;
+  font-weight: 800;
+}
+
+.resultInput:onactive {
+  background-color: blueviolet;
+}
+
+#ok-btn-result {
+  width: 40px;
+  height: 40px;
+}
+
+.teams {
+  background-color: rgb(165, 165, 178);
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 2px;
+  margin: 10px;
+  margin-top: 40px;
+}
+
+.playerToChange {
+  display: flex;
+  justify-content: center;
+}
+
+.gapBetweenTeams {
+  height: 2rem;
+  background-color: rgb(157, 157, 243);
+}
+
+.points {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: beige;
+}
+
+.resultPoints {
+  display: flex;
+  justify-content: space-between;
+  width: 10rem;
+  gap: 2rem;
+  background-color: aqua;
+}
+
+.signature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(241, 149, 149);
+  height: 3rem;
+  padding: 1rem;
+  gap: 1.5rem;
+}
+
+.resultContainerAll {
+  background-color: rgb(165, 165, 178);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 250px;
+  padding: 2px;
+  margin: 10px;
+  margin-top: 40px;
+}
+
+.playerField {
+  background-color: rgb(238, 188, 115);
+  width: 250px;
+  height: 1.8rem;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+  margin: 2px;
+}
+
+.playerPosition {
+  background-color: rgb(108, 217, 177);
+  width: 250px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 2px;
+}
+
+.playerPosition2 {
+  background-color: rgb(108, 217, 177);
+  width: 250px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  margin: 2px 2px 15px 2px;
+}
+
+.playerResult {
+  background-color: rgb(107, 108, 198);
+  width: 200px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2px;
+}
+
+.TeamRes {
+  background-color: rgb(229, 151, 33);
+  width: 250px;
+  height: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 2px;
+  margin: 2px;
+}
+.round {
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.HTeamRes,
+.GTeamRes {
+  background-color: aqua;
+}
+
+.einzelAll {
+  display: flex;
+  flex-direction: row;
+}
+
+.TeamGameResCont {
+  display: flex;
+}
+
+.gesamt {
+  display: flex;
+  flex-direction: row;
+}
+
+.gmpl-container {
+  background-color: blanchedalmond;
+  width: 250px;
+  height: 2rem;
+  display: flex;
+  align-items: center;
+  margin: 2px;
+  padding: 0px;
+}
+
+.eingabe {
+  height: 25px;
+  border: 0px;
+  border-radius: 5px;
+}
+.ok-btn {
+  height: 25px;
+  width: 250px;
+  border: none;
+  margin-left: 10px;
+}
