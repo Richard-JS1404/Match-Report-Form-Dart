@@ -20,7 +20,7 @@
     </header>
 
     <dialog id="dialogTeams" class="nameInputDialog">
-      <p>Spielername eingeben!!!</p>
+      <p id="diaText">Spielername eingeben!!!</p>
       <input id="inputTeams" class="eingabe" type="text" /><button id="ok-btn">
         OK
       </button>
@@ -28,9 +28,9 @@
 
      <dialog id="diaResult" class="resultInputDialog">
       <p>Ergebnis eingeben</p>
-      <input id="inputResult" class="resultInput" type="number" min="1" max="1" required/>
+      <input id="inputResult" class="resultInput"  maxlength="1"  required/>
       <p>:</p>
-      <input id="inputResult2" class="resultInput" type="number" min="1" max="1" required/>
+      <input id="inputResult2" class="resultInput"  maxlength="1"  required/>
       <button id="ok-btn-result">
         OK
       </button>
@@ -93,7 +93,7 @@
 
       <!--Hier werden die Begegnungen aktualisiert-->
 
-      <div id="playerConfirmContainer">
+      <div class="playerConfirmContainer">
         <button id="playerConfirmBtn" class="playerConfirm">Spieler Bestätigen</button>
       </div>
 
@@ -223,7 +223,7 @@
         <p id="h1r4"></p>
         <p id="h1r4P"></p>
       </div>
-      <div class="playerField" data-header="h1All">
+      <div class="playerField playerFieldAll" data-header="h1All">
         <p>Gesamt:</p>
         <p id="h1All"></p>
         <p id="h1AllP"></p>
@@ -252,7 +252,7 @@
         <p id="h2r4"></p>
         <p id="h2r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
         <p>Gesamt:</p>
         <p id="h2All"></p>
         <p id="h2AllP"></p>
@@ -281,7 +281,7 @@
         <p id="h3r4"></p>
         <p id="h3r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
         <p>Gesamt:</p>
         <p id="h3All"></p>
         <p id="h3AllP"></p>
@@ -310,7 +310,7 @@
         <p id="h4r4"></p>
         <p id="h4r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
         <p>Gesamt:</p>
         <p id="h4All"></p>
         <p id="h4AllP"></p>
@@ -339,8 +339,8 @@
         <p id="he1r4"></p>
         <p id="he1r4P"></p>
       </div>
-      <div class="playerField">
-        <p>Gesamt:</p>
+      <div class="playerField playerFieldAll">
+        <p>Gesamt: </p>
         <p id="he1All"></p>
         <p id="he1AllP"></p>
       </div>
@@ -368,7 +368,7 @@
         <p id="he2r4"></p>
         <p id="he2r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
         <p>Gesamt:</p>
         <p id="he2All"></p>
         <p id="he2AllP"></p>
@@ -438,7 +438,7 @@
         <p id="g1r4"></p>
         <p id="g1r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
         <p>Gesamt:</p>
         <p id="g1All"></p>
         <p id="g1AllP"></p>
@@ -467,7 +467,7 @@
         <p id="g2r4"></p>
         <p id="g2r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
         <p>Gesamt:</p>
         <p id="g2All"></p>
         <p id="g2AllP"></p>
@@ -496,7 +496,7 @@
         <p id="g3r4"></p>
         <p id="g3r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
          <p>Gesamt:</p>
         <p id="g3All"></p>
         <p id="g3AllP"></p>
@@ -525,7 +525,7 @@
         <p id="g4r4"></p>
         <p id="g4r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
         <p>Gesamt:</p>
         <p id="g4All"></p>
         <p id="g4AllP"></p>
@@ -554,7 +554,7 @@
         <p id="ge1r4"></p>
         <p id="ge1r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
        <p>Gesamt:</p>
         <p id="ge1All"></p>
         <p id="ge1AllP"></p>
@@ -583,7 +583,7 @@
         <p id="ge2r4"></p>
         <p id="ge2r4P"></p>
       </div>
-      <div class="playerField">
+      <div class="playerField playerFieldAll">
          <p>Gesamt:</p>
         <p id="ge2All"></p>
         <p id="ge2AllP"></p>

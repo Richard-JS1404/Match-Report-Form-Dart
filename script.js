@@ -2,6 +2,7 @@ const playerName = document.querySelectorAll(".playerPosition");
 const dialogPlayer = document.getElementById("dialogTeams");
 const close = document.getElementById("ok-btn");
 const input = document.getElementById("inputTeams");
+const diaText = document.getElementById("diaText");
 
 const homeIndexMap = {
   homeTeam: 0,
@@ -57,7 +58,16 @@ playerName.forEach((el) => {
     input.value = "";
     dialogPlayer.show();
     input.focus();
-    console.log(currentElement);
+    console.log(currentElement.id);
+    console.log(diaText.textContent);
+
+    if (currentHeader.includes("Team")) {
+      diaText.textContent = "Team Name eingeben!";
+    } else if (currentHeader.includes("Captain")) {
+      diaText.textContent = "Kapitänsname eingeben!";
+    } else {
+      diaText.textContent = "Spielername eingeben!";
+    }
   });
 });
 
