@@ -158,14 +158,17 @@ const inputResult2 = document.getElementById("inputResult2");
 const closeDialogResult = document.getElementById("ok-btn-result");
 
 let currentResult = null;
+let currentResult2 = null;
 
 legResult.forEach((el) => {
   el.addEventListener("click", () => {
     currentResult = el.querySelector("p");
+    currentResult2 = el.querySelector(".result");
     inputResult.value = "";
     inputResult2.value = "";
     dialogResult.show();
     inputResult.focus();
+    console.log(currentResult2);
   });
 });
 
@@ -202,9 +205,8 @@ function applyResult() {
   };
 
   // Spielerfeld aktualisieren
-
-  currentResult.textContent =
-    currentResult.textContent + `${homeScore}:${guestScore}`;
+  console.log(roundId);
+  currentResult2.textContent = `${homeScore}:${guestScore}`;
 
   // Ergebnisfelder anhand der Maps aktualisieren
   const resultIdH = resultMapH[roundId];
@@ -285,7 +287,7 @@ dialogResult.addEventListener("keydown", (event) => {
     updateAllPlayerPoints();
   }
 });
-
+/*
 legResult.forEach((el) => {
   el.addEventListener("click", () => {
     currentResult = el.querySelector("p");
@@ -295,7 +297,7 @@ legResult.forEach((el) => {
     inputResult.focus();
   });
 });
-
+*/
 document.addEventListener("DOMContentLoaded", () => {
   function allowOnly012(input) {
     input.addEventListener("input", () => {

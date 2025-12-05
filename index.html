@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SBB-Stadtmeisterschaft Klingenthal</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="main.css"/>
+    <link rel="stylesheet" href="footer.css">
 
     <script src="script.js" defer></script>
     <script src="result.js" defer></script>
@@ -114,16 +115,19 @@
 
           <div class="gmpl-container" data-header="r1g1">
             <p class="gmpl-GM1" id="r1g1"></p>
-            <p class=""></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container" data-header="r1g2">
             <p class="gmpl-GM1" id="r1g2"></p>
+             <p class="result"></p>
           </div>
           <div class="gmpl-container" data-header="r1g3">
             <p class="gmpl-GM1" id="r1g3"></p>
+             <p class="result"></p>
           </div>
           <div class="gmpl-container" data-header="r1g4">
             <p class="gmpl-GM1" id="r1g4"></p>
+             <p class="result"></p>
           </div>
 
           <div class="round">
@@ -132,15 +136,19 @@
 
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r2g1" id="r2g1"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r2g2" id="r2g2"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r2g3" id="r2g3"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r2g4" id="r2g4"></p>
+            <p class="result"></p>
           </div>
 
           <div class="round">
@@ -149,15 +157,19 @@
 
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r3g1" id="r3g1"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r3g2" id="r3g2"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r3g3" id="r3g3"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r3g4" id="r3g4"></p>
+            <p class="result"></p>
           </div>
 
           <div class="round">
@@ -166,15 +178,19 @@
 
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r4g1" id="r4g1"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r4g2" id="r4g2"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r4g3" id="r4g3"></p>
+            <p class="result"></p>
           </div>
           <div class="gmpl-container">
             <p class="gmpl-GM1" data-header="r4g4" id="r4g4"></p>
+            <p class="result"></p>
           </div>
 
           
@@ -368,12 +384,15 @@
             <p id="he2All"></p>
             <p id="he2AllP"></p>
           </div>
-          <div class="playerField playerFieldAll">
-            <div>
-
+          <div class="teamGameContainer">
+            <div class="teamGame1">
+              Teamspiel
             </div>
-            <div>
-
+            <div class="teamGame">
+              <p>erik</p>
+              <p>Tommy</p>
+              <p></p>
+              <p></p>
             </div>
           </div>
           <div class="playerField playerFieldAll">
@@ -573,12 +592,15 @@
             <p id="he2All"></p>
             <p id="he2AllP"></p>
           </div>
-          <div class="playerField playerFieldAll">
-            <div>
-
+          <div class="teamGameContainer">
+            <div class="teamGame1">
+                Teamspiel
             </div>
-            <div>
-              
+            <div class="teamGame">           
+             <p></p>
+             <p></p>
+             <p></p>
+             <p></p>
             </div>
           </div>
           <div class="playerField playerFieldAll">
@@ -594,53 +616,61 @@
 
         <footer>
             <div class="footerContainer">
-              <div class="footerDivs">
-                <p>Punkte</p>
-                <div class="footerPoints">
-                  <p>2</p>
-                  <p>:</p>
-                  <p>0</p>
-                </div>
-                <div class="footerPoints">
-                  <p>Heim</p>                  
-                  <p>Gast</p>
-                </div>
-                <div>
-                  Signatur
-                </div>
-              </div>
 
               <div class="footerDivs">
                 <p>Legs Gesamt</p>
                 <div class="footerPoints">
-                  <p>27</p>
-                  <p>:</p>
-                  <p>22</p>
-                </div>
-                <div class="footerPoints">
                   <p>Heim</p>                  
                   <p>Gast</p>
                 </div>
+                <div class="footerPoints">
+                  <p id="footerLegsHome">27</p>
+                  <p>:</p>
+                  <p id="footerLegsGuest">22</p>
+                </div>
+                
                 <div>
-                  Datum
+                  Signatur
                 </div>
               </div>
 
               <div class="footerDivs">
                 <p>Sets Gesamt</p>
                 <div class="footerPoints">
-                  <p>18</p>
-                  <p>:</p>
-                  <p>12</p>
-                </div>
-                <div class="footerPoints">
                   <p>Heim</p>                  
                   <p>Gast</p>
                 </div>
+                <div class="footerPoints">
+                  <p id="footerSetsHome">18</p>
+                  <p>:</p>
+                  <p id="footerSetsGuest">12</p>
+                </div>
+                
+                <div>
+                  Datum
+                </div>
+              </div>
+
+              <div class="footerDivs">
+                <p>Punkte</p>
+                 <div class="footerPoints">
+                  <p>Heim</p>                  
+                  <p>Gast</p>
+                </div>
+                <div class="footerPoints">
+                  <p id="footerPointsHome">2</p>
+                  <p>:</p>
+                  <p id="footerPointsGuest">0</p>
+                </div>
+               
                 <div>
                   Signatur
                 </div>
               </div>
+            </div>
+              
+
+              
         </footer>
       </div>
     </div>

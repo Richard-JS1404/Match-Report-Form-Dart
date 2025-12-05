@@ -8,12 +8,14 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 header {
   position: absolute;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%);
   width: 100vw;
 }
 
@@ -22,7 +24,7 @@ section {
   color: rgb(28, 239, 133);
   display: flex;
   justify-content: center;
-  position: sticky;
+
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
@@ -262,6 +264,33 @@ input::-webkit-inner-spin-button {
   align-items: center;
 }
 
+.teamGameContainer {
+  width: 250px;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.teamGame1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(207, 159, 86);
+  width: 250px;
+  height: 100%;
+  border: none;
+}
+
+.teamGame {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: rgb(238, 188, 115);
+  width: 250px;
+  height: 100%;
+}
+
 .playerConfirmContainer {
   display: flex;
   justify-content: center;
@@ -288,6 +317,7 @@ input::-webkit-inner-spin-button {
   width: 250px;
   height: 2rem;
   display: flex;
+  justify-content: space-around;
   align-items: center;
   margin: 2px;
   padding-left: 5px;
