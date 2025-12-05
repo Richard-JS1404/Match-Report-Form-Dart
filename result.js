@@ -168,7 +168,6 @@ legResult.forEach((el) => {
     inputResult2.value = "";
     dialogResult.show();
     inputResult.focus();
-    console.log(currentResult2);
   });
 });
 
@@ -205,7 +204,7 @@ function applyResult() {
   };
 
   // Spielerfeld aktualisieren
-  console.log(roundId);
+
   currentResult2.textContent = `${homeScore}:${guestScore}`;
 
   // Ergebnisfelder anhand der Maps aktualisieren
@@ -237,7 +236,6 @@ function applyResult() {
     const elHPoints = document.getElementById(resultAllHPoints);
     if (elHLegs) elHLegs.textContent = `${homeScore}:${guestScore}`;
     if (elHPoints) elHPoints.textContent = `${homePoints}:${guestPoints}`;
-    console.log(elHLegs.textContent);
   }
 
   if (resultAllGLegs) {
@@ -270,6 +268,7 @@ function applyResult() {
   console.log(matchResults);
   updateAllPlayerLegs();
   updateAllPlayerPoints();
+  updateFooterScores();
 
   // Dialog zurücksetzen
   inputResult.value = "";
@@ -285,6 +284,7 @@ dialogResult.addEventListener("keydown", (event) => {
     applyResult();
     updateAllPlayerLegs();
     updateAllPlayerPoints();
+    updateFooterScores();
   }
 });
 /*
@@ -407,7 +407,6 @@ function updateAllPlayerPoints() {
       totalHome += matchResults[r].homepoints || 0;
       totalGuest += matchResults[r].guestpoints || 0;
     });
-    console.log(rounds);
 
     if (player.startsWith("h")) {
       el.textContent = `${totalHome}:${totalGuest}`;
