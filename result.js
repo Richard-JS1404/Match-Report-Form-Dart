@@ -420,8 +420,10 @@ function updateAllPlayerPoints() {
 console.log(homePlayer);
 
 const chooseHomePlayer = document.querySelectorAll(".teamGamePlayersHome");
-
+const chooseGuestPlayer = document.querySelectorAll(".teamGamePlayersGuest");
 const dropDown = document.getElementById("myDropdown");
+
+let currentPlayer = null;
 
 function fillDropdown() {
   dropDown.innerHTML = "";
@@ -429,24 +431,47 @@ function fillDropdown() {
     const option = document.createElement("option");
     option.textContent = item;
     option.value = item;
+
+    dropDown.appendChild(option);
+    console.log(currentPlayer);
+  });
+}
+
+function fillDropdown2() {
+  dropDown.innerHTML = "";
+  guestPlayer.forEach((item) => {
+    const option = document.createElement("option");
+    option.textContent = item;
+    option.value = item;
     dropDown.appendChild(option);
   });
 }
 
-function dialogChoosePlayer() {
+function dialogChoosePlayer(targetEl) {
   const dialog = document.getElementById("choosePlayerDialog");
   dialog.show();
 
-  dropDown.addEventListener("change", () => {
-    console.log("Ausgewählt:", dropDown.value);
+  dropDown.onchange = () => {
+    currentPlayer = dropDown.value;
+    targetEl.textContent = currentPlayer;
     dropDown.style.display = "none";
-    dialog.close(); // Dropdown wieder ausblenden
-  });
+    dialog.close();
+
+    // Dropdown wieder ausblenden
+  };
 }
 
 chooseHomePlayer.forEach((el) => {
   el.addEventListener("click", () => {
     fillDropdown();
+    dialogChoosePlayer(el);
+    dropDown.style.display = "block";
+  });
+});
+
+chooseGuestPlayer.forEach((el) => {
+  el.addEventListener("click", () => {
+    fillDropdown2();
     dialogChoosePlayer();
     dropDown.style.display = "block";
   });
