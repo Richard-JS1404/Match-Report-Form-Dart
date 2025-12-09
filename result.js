@@ -285,6 +285,7 @@ dialogResult.addEventListener("keydown", (event) => {
     updateAllPlayerLegs();
     updateAllPlayerPoints();
     updateFooterScores();
+    updateFooterScores1();
   }
 });
 /*
@@ -415,3 +416,38 @@ function updateAllPlayerPoints() {
     }
   }
 }
+
+console.log(homePlayer);
+
+const chooseHomePlayer = document.querySelectorAll(".teamGamePlayersHome");
+
+const dropDown = document.getElementById("myDropdown");
+
+function fillDropdown() {
+  dropDown.innerHTML = "";
+  homePlayer.forEach((item) => {
+    const option = document.createElement("option");
+    option.textContent = item;
+    option.value = item;
+    dropDown.appendChild(option);
+  });
+}
+
+function dialogChoosePlayer() {
+  const dialog = document.getElementById("choosePlayerDialog");
+  dialog.show();
+
+  dropDown.addEventListener("change", () => {
+    console.log("Ausgewählt:", dropDown.value);
+    dropDown.style.display = "none";
+    dialog.close(); // Dropdown wieder ausblenden
+  });
+}
+
+chooseHomePlayer.forEach((el) => {
+  el.addEventListener("click", () => {
+    fillDropdown();
+    dialogChoosePlayer();
+    dropDown.style.display = "block";
+  });
+});
