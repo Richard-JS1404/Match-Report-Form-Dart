@@ -422,6 +422,10 @@ console.log(homePlayer);
 const chooseHomePlayer = document.querySelectorAll(".teamGamePlayersHome");
 const chooseGuestPlayer = document.querySelectorAll(".teamGamePlayersGuest");
 const dropDown = document.getElementById("myDropdown");
+const dialog = document.getElementById("choosePlayerDialog");
+const choosePlayerDialogClose = document.getElementById(
+  "choosePlayerDialogBtn"
+);
 
 let currentPlayer = null;
 
@@ -433,7 +437,6 @@ function fillDropdown() {
     option.value = item;
 
     dropDown.appendChild(option);
-    console.log(currentPlayer);
   });
 }
 
@@ -448,7 +451,6 @@ function fillDropdown2() {
 }
 
 function dialogChoosePlayer(targetEl) {
-  const dialog = document.getElementById("choosePlayerDialog");
   dialog.show();
 
   dropDown.onchange = () => {
@@ -472,7 +474,11 @@ chooseHomePlayer.forEach((el) => {
 chooseGuestPlayer.forEach((el) => {
   el.addEventListener("click", () => {
     fillDropdown2();
-    dialogChoosePlayer();
+    dialogChoosePlayer(el);
     dropDown.style.display = "block";
   });
+});
+
+choosePlayerDialogClose.addEventListener("click", () => {
+  dialog.close();
 });

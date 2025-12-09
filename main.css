@@ -74,6 +74,35 @@ section {
   gap: 20px;
 }
 
+#choosePlayerDialog[open] {
+  background-color: rgb(36, 34, 34);
+  border: none;
+  border-radius: 5px;
+  position: fixed;
+  width: 15rem;
+
+  top: 50%;
+  left: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#myDropdown {
+  background-color: rgb(36, 34, 34);
+  border: none;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: rgb(86, 245, 190);
+}
+
 .resultInputDialog[open] {
   background-color: rgb(36, 34, 34);
   border: none;
@@ -301,6 +330,8 @@ input::-webkit-inner-spin-button {
   border-style: dashed;
   border-width: 1px;
   border-color: rgb(120, 120, 71);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.2rem;
 }
 
 .teamGameBox {
@@ -312,7 +343,6 @@ input::-webkit-inner-spin-button {
 
 .teamGamePlayersHome,
 .teamGamePlayersGuest {
-  background-color: rgb(74, 67, 59);
   width: auto;
   cursor: pointer;
 }
