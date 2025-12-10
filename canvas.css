@@ -1,0 +1,50 @@
+:root {
+  --primary-color: black;
+  --secondary-color: rgba(241, 178, 62, 0.584);
+}
+
+body {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  line-height: 1.4;
+  padding: 1rem;
+  background-color: rgb(60, 66, 66);
+}
+
+.signatureDialog[open] {
+  display: flex;
+  flex-direction: column;
+
+  position: absolute;
+  top: 70%;
+  left: 40%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.signature-pad {
+  cursor: pointer;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+}
+
+.clear-btn {
+  color: var(--primary-color);
+}
+
+img {
+}
+
+.submit-btn {
+  width: 100%;
+  background-color: var(--primary-color);
+  border: none;
+  padding: 0.5rem 1rem;
+  color: white;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+@media (pointer: coarse) {
+  body {
+    overflow: hidden;
+  }
+}
