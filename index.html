@@ -6,10 +6,12 @@
     <title>SBB-Stadtmeisterschaft Klingenthal</title>
     <link rel="stylesheet" href="main.css"/>
     <link rel="stylesheet" href="footer.css">
+    <link rel="stylesheet" href="canvas.css">
 
     <script src="script.js" defer></script>
     <script src="result.js" defer></script>
     <script src="footer.js" defer></script>
+    <script src="canvas.js" defer></script>
   </head>
   <body>
     <header>
@@ -601,6 +603,22 @@
             <select id="myDropdown" size="8" style="display:none;"></select>
             <button id="choosePlayerDialogBtn">Close</button>
         </dialog>
+
+        <dialog class="signatureDialog">
+          
+            <h1>Unterschrift</h1>
+
+            <canvas height="200" width="600" class="signature-pad"> </canvas>
+
+            <p>
+              <a href="#" class="clear-btn">clear</a>
+            </p>
+
+            <button class="submit-btn">OK</button>
+            <button class="close-btn">Close</button>
+          
+
+        </dialog>
            
         <footer>
             <div class="footerContainer">
@@ -617,7 +635,7 @@
                   <p id="footerLegsGuest"></p>
                 </div>
                 
-                <div>
+                <div class="signature">
                   Signatur
                 </div>
               </div>
@@ -651,8 +669,8 @@
                   <p id="footerPointsGuest"></p>
                 </div>
                
-                <div>
-                  Signatur
+                <div class="signature">
+                  Signature
                 </div>
               </div>
             </div>
