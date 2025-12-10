@@ -1,5 +1,5 @@
 const canvas = document.querySelector("canvas");
-const form = document.querySelector(".submit-btn");
+const okButton = document.querySelector(".submit-btn");
 const closeBtn = document.querySelector(".close-btn");
 const clearButton = document.querySelector(".clear-btn");
 const ctx = canvas.getContext("2d");
@@ -18,7 +18,7 @@ openDialog.forEach((el) => {
   });
 });
 
-form.addEventListener("click", (event) => {
+okButton.addEventListener("click", (event) => {
   event.preventDefault();
 
   if (!currentTargetEl) return;

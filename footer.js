@@ -1,3 +1,10 @@
+const date = document.querySelector(".date");
+
+const today = new Date();
+const formatted = today.toLocaleDateString("de-DE");
+
+date.textContent = formatted;
+
 function updateFooterScores() {
   let totalHome = 0;
   let totalGuest = 0;

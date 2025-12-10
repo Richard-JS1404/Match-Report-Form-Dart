@@ -5,3 +5,17 @@
 .footerPoints {
   background-color: rgb(134, 134, 236);
 }
+
+.date {
+  background-color: rgb(62, 55, 51);
+  color: rgb(62, 241, 161);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  font-style: italic;
+}
