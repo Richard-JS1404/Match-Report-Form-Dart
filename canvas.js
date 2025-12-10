@@ -9,31 +9,33 @@ const body = document.querySelector("body");
 const openDialog = document.querySelectorAll(".signature");
 const dialogPad = document.querySelector(".signatureDialog");
 
+let currentTargetEl = null;
+
 openDialog.forEach((el) => {
   el.addEventListener("click", () => {
+    currentTargetEl = el;
     dialogPad.showModal();
-    appendImage(el);
-    console.log(el);
   });
 });
 
-function appendImage(targetEl) {
-  form.addEventListener("click", (event) => {
-    event.preventDefault();
+form.addEventListener("click", (event) => {
+  event.preventDefault();
 
-    const imageURL = canvas.toDataURL();
-    const image = document.createElement("img");
-    image.src = imageURL;
-    image.height = "50";
-    image.width = "250";
-    image.style.backgroundColor = "none";
+  if (!currentTargetEl) return;
 
-    // image.style.display = "flex";
-    targetEl.appendChild(image);
-    clearPad();
-    dialogPad.close();
-  });
-}
+  const imageURL = canvas.toDataURL();
+  const image = document.createElement("img");
+  image.src = imageURL;
+  image.height = "70";
+  image.width = "250";
+  image.style.backgroundColor = "none";
+  console.log(image);
+  // image.style.display = "flex";
+  currentTargetEl.appendChild(image);
+  clearPad();
+  dialogPad.close();
+});
+
 // close Button
 closeBtn.addEventListener("click", () => {
   dialogPad.close();
