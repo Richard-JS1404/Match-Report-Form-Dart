@@ -34,7 +34,7 @@ function appendImage(targetEl) {
     dialogPad.close();
   });
 }
-
+// close Button
 closeBtn.addEventListener("click", () => {
   dialogPad.close();
 });
