@@ -1,3 +1,33 @@
+// -------------------- Spielerzuordnung --------------------
+
+function resolvePlayerId(playerId) {
+  return GameState.activePlayerMap[playerId] || playerId;
+}
+
+function getActivePlayer(basePlayer) {
+  return GameState.activePlayerMap[basePlayer] || basePlayer;
+}
+
+const roundPlayerMap = {
+  r1g1: { home: "h1", guest: "g1" },
+  r1g2: { home: "h2", guest: "g2" },
+  r1g3: { home: "h3", guest: "g3" },
+  r1g4: { home: "h4", guest: "g4" },
+  r2g1: { home: "h1", guest: "g2" },
+  r2g2: { home: "h3", guest: "g4" },
+  r2g3: { home: "h2", guest: "g1" },
+  r2g4: { home: "h4", guest: "g3" },
+  r3g1: { home: "h3", guest: "g2" },
+  r3g2: { home: "h1", guest: "g4" },
+  r3g3: { home: "h2", guest: "g3" },
+  r3g4: { home: "h4", guest: "g1" },
+  r4g1: { home: "h1", guest: "g3" },
+  r4g2: { home: "h2", guest: "g4" },
+  r4g3: { home: "h3", guest: "g1" },
+  r4g4: { home: "h4", guest: "g2" },
+};
+
+// -------------------- Ergebnis-Mapping --------------------
 const resultMapH = {
   r1g1: "h1r1",
   r1g2: "h2r1",
@@ -16,26 +46,9 @@ const resultMapH = {
   r4g3: "h3r4",
   r4g4: "h4r4",
 };
-
-const resultMapHPoints = {
-  r1g1: "h1r1P",
-  r1g2: "h2r1P",
-  r1g3: "h3r1P",
-  r1g4: "h4r1P",
-  r2g1: "h1r2P",
-  r2g2: "h3r2P",
-  r2g3: "h2r2P",
-  r2g4: "h4r2P",
-  r3g1: "h3r3P",
-  r3g2: "h1r3P",
-  r3g3: "h2r3P",
-  r3g4: "h4r3P",
-  r4g1: "h1r4P",
-  r4g2: "h2r4P",
-  r4g3: "h3r4P",
-  r4g4: "h4r4P",
-};
-
+const resultMapHPoints = Object.fromEntries(
+  Object.entries(resultMapH).map(([k, v]) => [k, v + "P"])
+);
 const resultMapG = {
   r1g1: "g1r1",
   r1g2: "g2r1",
@@ -54,27 +67,11 @@ const resultMapG = {
   r4g3: "g1r4",
   r4g4: "g2r4",
 };
+const resultMapGPoints = Object.fromEntries(
+  Object.entries(resultMapG).map(([k, v]) => [k, v + "P"])
+);
 
-const resultMapGPoints = {
-  r1g1: "g1r1P",
-  r1g2: "g2r1P",
-  r1g3: "g3r1P",
-  r1g4: "g4r1P",
-  r2g1: "g2r2P",
-  r2g2: "g4r2P",
-  r2g3: "g1r2P",
-  r2g4: "g3r2P",
-  r3g1: "g2r3P",
-  r3g2: "g4r3P",
-  r3g3: "g3r3P",
-  r3g4: "g1r3P",
-  r4g1: "g3r4P",
-  r4g2: "g4r4P",
-  r4g3: "g1r4P",
-  r4g4: "g2r4P",
-};
-
-const resultMapAllHLegs = {
+const resultMapAllH = {
   r1g1: "h1All",
   r1g2: "h2All",
   r1g3: "h3All",
@@ -92,27 +89,10 @@ const resultMapAllHLegs = {
   r4g3: "h3All",
   r4g4: "h4All",
 };
-
-const resultMapAllHPoints = {
-  r1g1: "h1AllP",
-  r1g2: "h2AllP",
-  r1g3: "h3AllP",
-  r1g4: "h4AllP",
-  r2g1: "h1AllP",
-  r2g2: "h3AllP",
-  r2g3: "h2AllP",
-  r2g4: "h4AllP",
-  r3g1: "h3AllP",
-  r3g2: "h1AllP",
-  r3g3: "h2AllP",
-  r3g4: "h4AllP",
-  r4g1: "h1AllP",
-  r4g2: "h2AllP",
-  r4g3: "h3AllP",
-  r4g4: "h4AllP",
-};
-
-const resultMapAllGLegs = {
+const resultMapAllHPoints = Object.fromEntries(
+  Object.entries(resultMapAllH).map(([k, v]) => [k, v + "P"])
+);
+const resultMapAllG = {
   r1g1: "g1All",
   r1g2: "g2All",
   r1g3: "g3All",
@@ -130,40 +110,38 @@ const resultMapAllGLegs = {
   r4g3: "g1All",
   r4g4: "g2All",
 };
+const resultMapAllGPoints = Object.fromEntries(
+  Object.entries(resultMapAllG).map(([k, v]) => [k, v + "P"])
+);
 
-const resultMapAllGPoints = {
-  r1g1: "g1AllP",
-  r1g2: "g2AllP",
-  r1g3: "g3AllP",
-  r1g4: "g4AllP",
-  r2g1: "g2AllP",
-  r2g2: "g4AllP",
-  r2g3: "g1AllP",
-  r2g4: "g3AllP",
-  r3g1: "g2AllP",
-  r3g2: "g4AllP",
-  r3g3: "g3AllP",
-  r3g4: "g1AllP",
-  r4g1: "g3AllP",
-  r4g2: "g4AllP",
-  r4g3: "g1AllP",
-  r4g4: "g2AllP",
-};
-
+// -------------------- DOM-Elemente --------------------
 const legResult = document.querySelectorAll(".gmpl-container");
 const dialogResult = document.getElementById("diaResult");
 const inputResult = document.getElementById("inputResult");
 const inputResult2 = document.getElementById("inputResult2");
-
 const closeDialogResult = document.getElementById("ok-btn-result");
 
 let currentResult = null;
 let currentResult2 = null;
 
+// -------------------- Match Results --------------------
+
+Object.keys(resultMapH).forEach((roundId) => {
+  GameState.matchResults[roundId] = {
+    home: 0,
+    guest: 0,
+    homepoints: 0,
+    guestpoints: 0,
+    homePlayer: null,
+    guestPlayer: null,
+  };
+});
+
+// -------------------- EventListener für Ergebnis-Klick --------------------
 legResult.forEach((el) => {
   el.addEventListener("click", () => {
-    currentResult = el.querySelector("p");
-    currentResult2 = el.querySelector(".result");
+    currentResult = el.querySelector("p.gmpl-GM1");
+    currentResult2 = el.querySelector("p.result");
     inputResult.value = "";
     inputResult2.value = "";
     dialogResult.show();
@@ -171,106 +149,77 @@ legResult.forEach((el) => {
   });
 });
 
-let matchResults = {}; // { r1g1: { home: 0, guest: 0 }, ... }
-Object.keys(resultMapH).forEach((roundId) => {
-  matchResults[roundId] = { home: 0, guest: 0, homepoints: 0, guestpoints: 0 };
-});
+function extractPlayerId(value) {
+  const match = value.match(/^([a-z]+[0-9]+)/); // nur h1, h2, g1, g2, he1, ge2 usw.
+  return match ? match[1] : value;
+}
 
+// -------------------- Ergebnis anwenden --------------------
 function applyResult() {
   if (!currentResult) return;
-
+  const roundId = currentResult.id;
   const homeScore = parseInt(inputResult.value) || 0;
   const guestScore = parseInt(inputResult2.value) || 0;
-  let homePoints = 0;
-  let guestPoints = 0;
-  const roundId = currentResult.id;
 
-  if (homeScore >= 2) {
-    homePoints = 1;
-  } else if (homeScore <= 2) {
-    homePoints = 0;
-  }
-  if (guestScore >= 2) {
-    guestPoints = 1;
-  } else if (guestScore <= 2) {
-    guestPoints = 0;
-  }
-  // Ergebnis im Array speichern
-  matchResults[roundId] = {
+  const homePoints = homeScore >= 2 ? 1 : 0;
+  const guestPoints = guestScore >= 2 ? 1 : 0;
+
+  // Spieler aus Maps ermitteln
+  const homePlayerOriginal = roundPlayerMap[roundId].home;
+  const guestPlayerOriginal = roundPlayerMap[roundId].guest;
+
+  const homePlayer = getActivePlayer(homePlayerOriginal);
+  const guestPlayer = getActivePlayer(guestPlayerOriginal);
+
+  GameState.matchResults[roundId] = {
     home: homeScore,
     guest: guestScore,
     homepoints: homePoints,
     guestpoints: guestPoints,
+    homePlayer: homePlayerOriginal,
+    guestPlayer: guestPlayerOriginal,
   };
 
-  // Spielerfeld aktualisieren
-
+  // Einzelspieler-Resultate aktualisieren
   currentResult2.textContent = `${homeScore}:${guestScore}`;
 
-  // Ergebnisfelder anhand der Maps aktualisieren
-  const resultIdH = resultMapH[roundId];
-  const resultIdHPoints = resultMapHPoints[roundId];
-  const resultIdG = resultMapG[roundId];
-  const resultIdGPoints = resultMapGPoints[roundId];
-  const resultAllHPoints = resultMapAllHPoints[roundId];
-  const resultAllHLegs = resultMapAllHLegs[roundId];
-  const resultAllGPoints = resultMapAllGPoints[roundId];
-  const resultAllGLegs = resultMapAllGLegs[roundId];
+  function resolveResultId(map, roundId) {
+    const baseId = map[roundId];
+    if (!baseId) return null;
+    const match = baseId.match(/^([a-z0-9]+)(r\d.*)$/);
+    if (!match) return baseId;
+    const originalPlayer = match[1];
+    const rest = match[2];
+    const activePlayer = resolvePlayerId(originalPlayer);
+    return `${activePlayer}${rest}`;
+  }
 
-  // Einzelspieler aktualisieren
-  if (resultIdH) {
-    const elH = document.getElementById(resultIdH);
-    const elH2 = document.getElementById(resultIdHPoints);
+  const ids = {
+    h: resolveResultId(resultMapH, roundId),
+    hP: resolveResultId(resultMapHPoints, roundId),
+    g: resolveResultId(resultMapG, roundId),
+    gP: resolveResultId(resultMapGPoints, roundId),
+  };
+
+  // Einzelspieler-DOM aktualisieren
+  if (ids.h) {
+    const elH = document.getElementById(ids.h);
+    const elHP = document.getElementById(ids.hP);
     if (elH) elH.textContent = `${homeScore}:${guestScore}`;
-    if (elH2) elH2.textContent = `${homePoints}:${guestPoints}`;
+    if (elHP) elHP.textContent = `${homePoints}:${guestPoints}`;
   }
-  if (resultIdG) {
-    const elG = document.getElementById(resultIdG);
-    const elG2 = document.getElementById(resultIdGPoints);
+  if (ids.g) {
+    const elG = document.getElementById(ids.g);
+    const elGP = document.getElementById(ids.gP);
     if (elG) elG.textContent = `${guestScore}:${homeScore}`;
-    if (elG2) elG2.textContent = `${guestPoints}:${homePoints}`;
+    if (elGP) elGP.textContent = `${guestPoints}:${homePoints}`;
   }
 
-  if (resultAllHLegs) {
-    const elHLegs = document.getElementById(resultAllHLegs);
-    const elHPoints = document.getElementById(resultAllHPoints);
-    if (elHLegs) elHLegs.textContent = `${homeScore}:${guestScore}`;
-    if (elHPoints) elHPoints.textContent = `${homePoints}:${guestPoints}`;
-  }
-
-  if (resultAllGLegs) {
-    const elGLegs = document.getElementById(resultAllGLegs);
-    const elGPoints = document.getElementById(resultAllGPoints);
-    if (elGLegs) elGLegs.textContent = `${guestScore}:${homeScore}`;
-    if (elGPoints) elGPoints.textContent = `${guestPoints}:${homePoints}`;
-  }
-  /*
-  // Zähler aktualisieren (AllP)
-  if (resultAllHPoints) {
-    const elAllH = document.getElementById(resultAllHPoints);
-    if (elAllH) {
-      let counter = parseInt(elAllH.textContent) || 0;
-      if (homeScore > 1) counter++;
-      elAllH.textContent = counter;
-    }
-  }
-
-  if (resultAllGPoints) {
-    const elAllG = document.getElementById(resultAllGPoints);
-    if (elAllG) {
-      let counter = parseInt(elAllG.textContent) || 0;
-      if (guestScore > 1) counter++;
-      elAllG.textContent = counter;
-    }
-  }
-
-  */
-  console.log(matchResults);
-  updateAllPlayerLegs();
-  updateAllPlayerPoints();
+  // Gesamtwerte aller Spieler aktualisieren
+  updateAllPlayerLegsAndPoints();
   updateFooterScores();
 
-  // Dialog zurücksetzen
+  // Input zurücksetzen und Dialog schließen
   inputResult.value = "";
   inputResult2.value = "";
   dialogResult.close();
@@ -282,23 +231,10 @@ dialogResult.addEventListener("keydown", (event) => {
   if (event.key === "Enter") {
     event.preventDefault();
     applyResult();
-    updateAllPlayerLegs();
-    updateAllPlayerPoints();
-    updateFooterScores();
-    updateFooterScores1();
   }
 });
-/*
-legResult.forEach((el) => {
-  el.addEventListener("click", () => {
-    currentResult = el.querySelector("p");
-    inputResult.value = "";
-    inputResult2.value = "";
-    dialogResult.show();
-    inputResult.focus();
-  });
-});
-*/
+
+// -------------------- Input Validierung --------------------
 document.addEventListener("DOMContentLoaded", () => {
   function allowOnly012(input) {
     input.addEventListener("input", () => {
@@ -307,118 +243,82 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Input-Felder
-  const input1 = document.getElementById("inputResult");
-  const input2 = document.getElementById("inputResult2");
+  allowOnly012(inputResult);
+  allowOnly012(inputResult2);
 
-  // Grundregel: beide Inputs dürfen nur 0/1/2
-  allowOnly012(input1);
-  allowOnly012(input2);
-
-  // Zusatzregel: Wenn im ersten Feld eine 2 steht → zweites Feld darf NICHT 2 sein
-  input1.addEventListener("input", () => {
-    if (input1.value === "2") {
-      // Zweites Feld darf nur 0 oder 1 sein
-      input2.value = input2.value.replace(/2/g, "");
-    }
-
-    if (input1.value === "0" || input1.value === "1") {
-      // Zweites Feld darf 0,1,2
-      input2.value = input2.value.replace(/[^012]/g, "");
-    }
+  inputResult.addEventListener("input", () => {
+    if (inputResult.value === "2")
+      inputResult2.value = inputResult2.value.replace(/2/g, "");
   });
 });
 
-// Auch beim Tippen im zweiten Feld überprüfen
-
-function updateAllPlayerLegs() {
-  const playerLegs = [
-    "h1All",
-    "h2All",
-    "h3All",
-    "h4All",
-    "g1All",
-    "g2All",
-    "g3All",
-    "g4All",
+// -------------------- Spieler Summierung --------------------
+function updateAllPlayerLegsAndPoints() {
+  const players = [
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "he1",
+    "he2",
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "ge1",
+    "ge2",
   ];
 
-  for (const player of playerLegs) {
-    const el = document.getElementById(player);
-    if (!el) continue;
+  // Totals initialisieren (für Originalspieler)
+  const totals = {};
+  players.forEach((p) => {
+    totals[p] = { home: 0, guest: 0, homePoints: 0, guestPoints: 0 };
+  });
 
-    // Filter runden für diesen Spieler
-    const rounds = [
-      ...Object.keys(resultMapAllHLegs).filter(
-        (key) => resultMapAllHLegs[key] === player
-      ),
-      ...Object.keys(resultMapAllGLegs).filter(
-        (key) => resultMapAllGLegs[key] === player
-      ),
-    ];
+  // Alle Runden durchgehen und Originalspieler summieren
+  for (const roundId in GameState.matchResults) {
+    const r = GameState.matchResults[roundId];
+    if (!r || !r.homePlayer || !r.guestPlayer) continue;
 
-    // Summiere Legs
-    let totalHome = 0;
-    let totalGuest = 0;
+    const homeKey = r.homePlayer; // Originalspieler
+    const guestKey = r.guestPlayer; // Originalspieler
 
-    rounds.forEach((r) => {
-      totalHome += matchResults[r].home || 0;
-      totalGuest += matchResults[r].guest || 0;
-    });
+    if (!totals[homeKey])
+      totals[homeKey] = { home: 0, guest: 0, homePoints: 0, guestPoints: 0 };
+    if (!totals[guestKey])
+      totals[guestKey] = { home: 0, guest: 0, homePoints: 0, guestPoints: 0 };
 
-    if (player.startsWith("h")) {
-      el.textContent = `${totalHome}:${totalGuest}`;
-    } else {
-      el.textContent = `${totalGuest}:${totalHome}`;
-    }
+    totals[homeKey].home += r.home;
+    totals[homeKey].guest += r.guest;
+    totals[homeKey].homePoints += r.homepoints;
+    totals[homeKey].guestPoints += r.guestpoints;
+
+    totals[guestKey].guest += r.guest;
+    totals[guestKey].home += r.home;
+    totals[guestKey].guestPoints += r.guestpoints;
+    totals[guestKey].homePoints += r.homepoints;
   }
+
+  // DOM-Felder aktualisieren
+  players.forEach((p) => {
+    // Für Anzeige prüfen, ob Spieler aktuell getauscht wurde
+    const displayPlayer = GameState.activePlayerMap[p] || p;
+
+    // Legs
+    const elLegs = document.getElementById(`${displayPlayer}All`);
+    if (elLegs && totals[p]) {
+      elLegs.textContent = `${totals[p].home}:${totals[p].guest}`;
+    }
+
+    // Points
+    const elPoints = document.getElementById(`${displayPlayer}AllP`);
+    if (elPoints && totals[p]) {
+      elPoints.textContent = `${totals[p].homePoints}:${totals[p].guestPoints}`;
+    }
+  });
 }
 
-function updateAllPlayerPoints() {
-  const playerPoints = [
-    "h1AllP",
-    "h2AllP",
-    "h3AllP",
-    "h4AllP",
-    "g1AllP",
-    "g2AllP",
-    "g3AllP",
-    "g4AllP",
-  ];
-
-  for (const player of playerPoints) {
-    const el = document.getElementById(player);
-    if (!el) continue;
-
-    // Filter runden für diesen Spieler
-    const rounds = [
-      ...Object.keys(resultMapAllHPoints).filter(
-        (key) => resultMapAllHPoints[key] === player
-      ),
-      ...Object.keys(resultMapAllGPoints).filter(
-        (key) => resultMapAllGPoints[key] === player
-      ),
-    ];
-
-    // Summiere Legs
-    let totalHome = 0;
-    let totalGuest = 0;
-
-    rounds.forEach((r) => {
-      totalHome += matchResults[r].homepoints || 0;
-      totalGuest += matchResults[r].guestpoints || 0;
-    });
-
-    if (player.startsWith("h")) {
-      el.textContent = `${totalHome}:${totalGuest}`;
-    } else {
-      el.textContent = `${totalGuest}:${totalHome}`;
-    }
-  }
-}
-
-console.log(homePlayer);
-
+// -------------------- Dropdown für Spielerwechsel --------------------
 const chooseHomePlayer = document.querySelectorAll(".teamGamePlayersHome");
 const chooseGuestPlayer = document.querySelectorAll(".teamGamePlayersGuest");
 const dropDown = document.getElementById("myDropdown");
@@ -429,56 +329,42 @@ const choosePlayerDialogClose = document.getElementById(
 
 let currentPlayer = null;
 
-function fillDropdown() {
+function fillDropdown(playerArray) {
   dropDown.innerHTML = "";
-  homePlayer.forEach((item) => {
+  playerArray.forEach((item) => {
     const option = document.createElement("option");
-    option.textContent = item;
     option.value = item;
-
-    dropDown.appendChild(option);
-  });
-}
-
-function fillDropdown2() {
-  dropDown.innerHTML = "";
-  guestPlayer.forEach((item) => {
-    const option = document.createElement("option");
     option.textContent = item;
-    option.value = item;
     dropDown.appendChild(option);
   });
 }
 
 function dialogChoosePlayer(targetEl) {
   dialog.show();
+  dropDown.style.display = "block";
 
   dropDown.onchange = () => {
     currentPlayer = dropDown.value;
     targetEl.textContent = currentPlayer;
     dropDown.style.display = "none";
     dialog.close();
-
-    // Dropdown wieder ausblenden
   };
 }
 
-chooseHomePlayer.forEach((el) => {
+chooseHomePlayer.forEach((el) =>
   el.addEventListener("click", () => {
-    fillDropdown();
+    const homePlayer = ["h1", "h2", "h3", "h4", "he1", "he2"];
+    fillDropdown(homePlayer);
     dialogChoosePlayer(el);
-    dropDown.style.display = "block";
-  });
-});
+  })
+);
 
-chooseGuestPlayer.forEach((el) => {
+chooseGuestPlayer.forEach((el) =>
   el.addEventListener("click", () => {
-    fillDropdown2();
+    const guestPlayer = ["g1", "g2", "g3", "g4", "ge1", "ge2"];
+    fillDropdown(guestPlayer);
     dialogChoosePlayer(el);
-    dropDown.style.display = "block";
-  });
-});
+  })
+);
 
-choosePlayerDialogClose.addEventListener("click", () => {
-  dialog.close();
-});
+choosePlayerDialogClose.addEventListener("click", () => dialog.close());

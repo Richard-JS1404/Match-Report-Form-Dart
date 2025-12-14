@@ -67,15 +67,6 @@ const resultMap = {
  * DATEN
  **********************************************************/
 
-let teams = [];
-let captains = [];
-
-let homePlayer = [];
-let guestPlayer = [];
-
-let homeSubstitudePlayer = [];
-let guestSubstitudePlayer = [];
-
 /**********************************************************
  * SPIELERNAMEN EINGEBEN
  **********************************************************/
@@ -104,19 +95,19 @@ function applyPlayer() {
   currentElement.textContent = value;
 
   if (homeIndexMap[currentHeader] !== undefined) {
-    homePlayer[homeIndexMap[currentHeader]] = value;
-    if (currentHeader === "homeTeam") teams[0] = value;
-    if (currentHeader === "hCaptain") captains[0] = value;
-    if (currentHeader === "he1") homeSubstitudePlayer[0] = value;
-    if (currentHeader === "he2") homeSubstitudePlayer[1] = value;
+    GameState.homePlayer[homeIndexMap[currentHeader]] = value;
+    if (currentHeader === "homeTeam") GameState.teams[0] = value;
+    if (currentHeader === "hCaptain") GameState.captains[0] = value;
+    if (currentHeader === "he1") GameState.homeSubstitudePlayer[0] = value;
+    if (currentHeader === "he2") GameState.homeSubstitudePlayer[1] = value;
   }
 
   if (guestIndexMap[currentHeader] !== undefined) {
-    guestPlayer[guestIndexMap[currentHeader]] = value;
-    if (currentHeader === "guestTeam") teams[1] = value;
-    if (currentHeader === "gCaptain") captains[1] = value;
-    if (currentHeader === "ge1") guestSubstitudePlayer[0] = value;
-    if (currentHeader === "ge2") guestSubstitudePlayer[1] = value;
+    GameState.guestPlayer[guestIndexMap[currentHeader]] = value;
+    if (currentHeader === "guestTeam") GameState.teams[1] = value;
+    if (currentHeader === "gCaptain") GameState.captains[1] = value;
+    if (currentHeader === "ge1") GameState.guestSubstitudePlayer[0] = value;
+    if (currentHeader === "ge2") GameState.guestSubstitudePlayer[1] = value;
   }
 
   dialogPlayer.close();
@@ -166,8 +157,8 @@ const allRounds = [round1Matches, round2Matches, round3Matches, round4Matches];
 
 function fillAllRounds() {
   allRounds.flat().forEach((match) => {
-    const homeName = homePlayer[homeIndexMap[match.home]] || "";
-    const guestName = guestPlayer[guestIndexMap[match.guest]] || "";
+    const homeName = GameState.homePlayer[homeIndexMap[match.home]] || "";
+    const guestName = GameState.guestPlayer[guestIndexMap[match.guest]] || "";
     document.getElementById(
       match.id
     ).textContent = `${homeName} vs ${guestName}`;
@@ -198,7 +189,10 @@ function openSubDialog(side) {
   dropdown.innerHTML = "";
   dropdown.style.display = "block";
 
-  const subs = side === "home" ? homeSubstitudePlayer : guestSubstitudePlayer;
+  const subs =
+    side === "home"
+      ? GameState.homeSubstitudePlayer
+      : GameState.guestSubstitudePlayer;
 
   subs.forEach((p) => {
     if (!p) return;
@@ -237,11 +231,11 @@ function isRoundPlayed(matchId) {
 }
 
 function getHomeName(key) {
-  return homePlayer[homeIndexMap[key]] || "";
+  return GameState.homePlayer[homeIndexMap[key]] || "";
 }
 
 function getGuestName(key) {
-  return guestPlayer[guestIndexMap[key]] || "";
+  return GameState.guestPlayer[guestIndexMap[key]] || "";
 }
 
 /**********************************************************
@@ -249,6 +243,12 @@ function getGuestName(key) {
  **********************************************************/
 
 function changeHomePlayer(oldKey, newName) {
+  // 🔥 HIER PASSIERT DIE MAGIE
+  const subIndex = GameState.homeSubstitudePlayer.indexOf(newName);
+  const subKey = subIndex === 0 ? "he1" : "he2";
+
+  GameState.activePlayerMap[oldKey] = subKey;
+
   allRounds.flat().forEach((match) => {
     if (match.home === oldKey && !isRoundPlayed(match.id)) {
       const guestName = getGuestName(match.guest);
@@ -264,6 +264,11 @@ function changeHomePlayer(oldKey, newName) {
  **********************************************************/
 
 function changeGuestPlayer(oldKey, newName) {
+  const subIndex = GameState.guestSubstitudePlayer.indexOf(newName);
+  const subKey = subIndex === 0 ? "ge1" : "ge2";
+
+  GameState.activePlayerMap[oldKey] = subKey;
+
   allRounds.flat().forEach((match) => {
     if (match.guest === oldKey && !isRoundPlayed(match.id)) {
       const homeName = getHomeName(match.home);
@@ -284,10 +289,10 @@ function updateResultHeaders() {
     if (!el) continue;
 
     if (homeIndexMap[key] !== undefined)
-      el.textContent = homePlayer[homeIndexMap[key]] || key;
+      el.textContent = GameState.homePlayer[homeIndexMap[key]] || key;
 
     if (guestIndexMap[key] !== undefined)
-      el.textContent = guestPlayer[guestIndexMap[key]] || key;
+      el.textContent = GameState.guestPlayer[guestIndexMap[key]] || key;
   }
 }
 

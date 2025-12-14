@@ -10,9 +10,9 @@ function updateFooterScores() {
   let totalGuest = 0;
 
   // Alle Runden durchlaufen
-  Object.keys(matchResults).forEach((r) => {
-    totalHome += matchResults[r].home || 0;
-    totalGuest += matchResults[r].guest || 0;
+  Object.keys(GameState.matchResults).forEach((r) => {
+    totalHome += GameState.matchResults[r].home || 0;
+    totalGuest += GameState.matchResults[r].guest || 0;
   });
 
   // Ausgeben in Footer
@@ -28,9 +28,9 @@ function updateFooterScores1() {
   let totalGuest = 0;
 
   // Alle Runden durchlaufen
-  Object.keys(matchResults).forEach((r) => {
-    totalHome += matchResults[r].homepoints || 0;
-    totalGuest += matchResults[r].guestpoints || 0;
+  Object.keys(GameState.matchResults).forEach((r) => {
+    totalHome += GameState.matchResults[r].homepoints || 0;
+    totalGuest += GameState.matchResults[r].guestpoints || 0;
   });
 
   // Ausgeben in Footer
