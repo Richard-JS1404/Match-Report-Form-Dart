@@ -26,10 +26,10 @@ okButton.addEventListener("click", (event) => {
   const imageURL = canvas.toDataURL();
   const image = document.createElement("img");
   image.src = imageURL;
-  image.height = "70";
-  image.width = "250";
+  image.height = "50";
+  image.width = "200";
   image.style.backgroundColor = "none";
-  console.log(image);
+
   // image.style.display = "flex";
   currentTargetEl.appendChild(image);
   clearPad();

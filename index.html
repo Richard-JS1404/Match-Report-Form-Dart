@@ -4,9 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>SBB-Stadtmeisterschaft Klingenthal</title>
-    <link rel="stylesheet" href="main.css"/>
-    <link rel="stylesheet" href="footer.css">
-    <link rel="stylesheet" href="canvas.css">
+    <link rel="stylesheet" href="main.css" />
+    <link rel="stylesheet" href="footer.css" />
+    <link rel="stylesheet" href="canvas.css" />
 
     <script src="script.js" defer></script>
     <script src="result.js" defer></script>
@@ -45,638 +45,634 @@
           </div>
           <div class="playerPosition" data-header="hCaptain">
             <p id="hCaptain">Kapitän</p>
+            <img class="captainImg" src="/images/c.png" alt="Captain">
           </div>
-          <div class="playerPosition" data-header="h1">
-            <p id="h1">H1</p>
-          </div>
-          <div class="playerPosition" data-header="h2">
-            <p id="h2">H2</p>
-          </div>
-          <div class="playerPosition" data-header="h3">
-            <p id="h3">H3</p>
-          </div>
-          <div class="playerPosition" data-header="h4">
-            <p id="h4">H4</p>
-          </div>
-          <p class="playerToChange">Wechselspieler Heim</p>
-          <div class="playerPosition" data-header="he1">
-            <p id="he1">HE1</p>
-          </div>
-          <div class="playerPosition" data-header="he2">
-            <p id="he2">HE2</p>
+            <div class="playerPosition" data-header="h1">
+              <p id="h1">H1</p>
+              <img class="changePlayerImg" src="/images/sync.png" alt="change-Player">
+            </div>
+            <div class="playerPosition" data-header="h2">
+              <p id="h2">H2</p>
+              <img class="changePlayerImg" src="/images/sync.png" alt="change-Player">
+            </div>
+            <div class="playerPosition" data-header="h3">
+              <p id="h3">H3</p>
+              <img class="changePlayerImg" src="/images/sync.png" alt="change-Player">
+            </div>
+            <div class="playerPosition" data-header="h4">
+              <p id="h4">H4</p>
+              <img class="changePlayerImg" src="/images/sync.png" alt="change-Player">
+            </div>
+
+            <div class="changePlayerContainer">
+              <p class="playerToChange">Wechselspieler Heim</p>
+             
+            </div>
+            <div class="playerPosition" data-header="he1">
+              <p id="he1">HE1</p>
+            </div>
+            <div class="playerPosition" data-header="he2">
+              <p id="he2">HE2</p>
+            </div>
+
+            <div class="gapBetweenTeams"></div>
+
+            <div class="playerPosition" data-header="guestTeam">
+              <p id="guestTeam">Gast-Team</p>
+            </div>
+            <div class="playerPosition" data-header="gCaptain">
+              <p id="gCaptain">Kapitän</p>
+              <img class="captainImg" src="/images/c.png" alt="Captain">
+            </div>
+            <div class="playerPosition" data-header="g1">
+              <p id="g1">G1</p>
+              <img class="changePlayerImg" src="/images/sync.png" alt="change-Player">
+            </div>
+            <div class="playerPosition" data-header="g2">
+              <p id="g2">G2</p>
+              <img class="changePlayerImg" src="/images/sync.png" alt="change-Player">
+            </div>
+            <div class="playerPosition" data-header="g3">
+              <p id="g3">G3</p>
+              <img class="changePlayerImg" src="/images/sync.png" alt="change-Player">
+            </div>
+            <div class="playerPosition" data-header="g4">
+              <p id="g4">G4</p>
+              <img class="changePlayerImg" src="/images/sync.png" alt="change-Player">
+            </div>
+            <div class="changePlayerContainer">
+              <p class="playerToChange">Wechselspieler Gast</p>
+              
+               
+            </div>
+            <div class="playerPosition" data-header="ge1">
+              <p id="ge1">GE1</p>
+            </div>
+            <div class="playerPosition" data-header="ge2">
+              <p id="ge2">GE2</p>
+            </div>
+
+            <!--Hier werden die Begegnungen aktualisiert-->
+
+            <div class="playerConfirmContainer">
+              <button id="playerConfirmBtn" class="playerConfirm">
+                Spieler Bestätigen
+              </button>
+            </div>
+
+            <dialog id="dialogPlayerConfirm" class="playerConfirm">
+              <h1>Alle Felder Korrekt ausgefüllt?</h1>
+              <button id="playerConfirmDialogOkBtn" class="dialogBtn">
+                ok
+              </button>
+              <button id="playerConfirmDialogCloseBtn" class="dialogBtn">
+                Close
+              </button>
+            </dialog>
+
+            <!-- Hier beginnen die Rundenspiele -->
+
+            <div class="round">
+              <p>Runde 1</p>
+            </div>
+
+            <div class="gmpl-container" data-header="r1g1">
+              <p class="gmpl-GM1" id="r1g1"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container" data-header="r1g2">
+              <p class="gmpl-GM1" id="r1g2"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container" data-header="r1g3">
+              <p class="gmpl-GM1" id="r1g3"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container" data-header="r1g4">
+              <p class="gmpl-GM1" id="r1g4"></p>
+              <p class="result"></p>
+            </div>
+
+            <div class="round">
+              <p>Runde 2</p>
+            </div>
+
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r2g1" id="r2g1"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r2g2" id="r2g2"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r2g3" id="r2g3"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r2g4" id="r2g4"></p>
+              <p class="result"></p>
+            </div>
+
+            <div class="round">
+              <p>Runde 3</p>
+            </div>
+
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r3g1" id="r3g1"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r3g2" id="r3g2"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r3g3" id="r3g3"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r3g4" id="r3g4"></p>
+              <p class="result"></p>
+            </div>
+
+            <div class="round">
+              <p>Runde 4</p>
+            </div>
+
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r4g1" id="r4g1"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r4g2" id="r4g2"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r4g3" id="r4g3"></p>
+              <p class="result"></p>
+            </div>
+            <div class="gmpl-container">
+              <p class="gmpl-GM1" data-header="r4g4" id="r4g4"></p>
+              <p class="result"></p>
+            </div>
           </div>
 
-          <div class="gapBetweenTeams"></div>
+          <!-- Hier beginnen die Ergebnise des Heim teams -->
 
-          <div class="playerPosition" data-header="guestTeam">
-            <p id="guestTeam">Gast-Team</p>
-          </div>
-          <div class="playerPosition" data-header="gCaptain">
-            <p id="gCaptain">Kapitän</p>
-          </div>
-          <div class="playerPosition" data-header="g1">
-            <p id="g1">G1</p>
-          </div>
-          <div class="playerPosition" data-header="g2">
-            <p id="g2">G2</p>
-          </div>
-          <div class="playerPosition" data-header="g3">
-            <p id="g3">G3</p>
-          </div>
-          <div class="playerPosition" data-header="g4">
-            <p id="g4">G4</p>
-          </div>
-          <p class="playerToChange">Wechselspieler Gast</p>
-          <div class="playerPosition" data-header="ge1">
-            <p id="ge1">GE1</p>
-          </div>
-          <div class="playerPosition" data-header="ge2">
-            <p id="ge2">GE2</p>
-          </div>
+          <div class="resultContainerAll">
+            <div class="TeamRes">
+              <p class="HTeamRes" id="HTeamRes">Heim-Mannschaft</p>
+              <p class="legsSets">Legs - Sets</p>
+            </div>
+            <div class="playerResult">
+              <p id="homePlayer1">H1</p>
+            </div>
+            <div class="playerField" data-header="h1r1">
+              <p>Runde 1:</p>
+              <p id="h1r1"></p>
+              <p id="h1r1P"></p>
+            </div>
+            <div class="playerField" data-header="h1r2">
+              <p>Runde 2:</p>
+              <p id="h1r2"></p>
+              <p id="h1r2P"></p>
+            </div>
+            <div class="playerField" data-header="h1r3">
+              <p>Runde 3:</p>
+              <p id="h1r3"></p>
+              <p id="h1r3P"></p>
+            </div>
+            <div class="playerField" data-header="h1r4">
+              <p>Runde 4:</p>
+              <p id="h1r4"></p>
+              <p id="h1r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll" data-header="h1All">
+              <p>Gesamt:</p>
+              <p id="h1All"></p>
+              <p id="h1AllP"></p>
+            </div>
 
-          <!--Hier werden die Begegnungen aktualisiert-->
+            <div class="playerResult">
+              <p id="homePlayer2">H2</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="h2r1"></p>
+              <p id="h2r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="h2r2"></p>
+              <p id="h2r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="h2r3"></p>
+              <p id="h2r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="h2r4"></p>
+              <p id="h2r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="h2All"></p>
+              <p id="h2AllP"></p>
+            </div>
 
-          <div class="playerConfirmContainer">
-            <button id="playerConfirmBtn" class="playerConfirm">
-              Spieler Bestätigen
-            </button>
-          </div>
+            <div class="playerResult">
+              <p id="homePlayer3">H3</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="h3r1"></p>
+              <p id="h3r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="h3r2"></p>
+              <p id="h3r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="h3r3"></p>
+              <p id="h3r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="h3r4"></p>
+              <p id="h3r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="h3All"></p>
+              <p id="h3AllP"></p>
+            </div>
 
-          <dialog id="dialogPlayerConfirm" class="playerConfirm">
-            <h1>Alle Felder Korrekt ausgefüllt?</h1>
-            <button id="playerConfirmDialogOkBtn" class="dialogBtn">ok</button>
-            <button id="playerConfirmDialogCloseBtn" class="dialogBtn">
-              Close
-            </button>
-          </dialog>
+            <div class="playerResult">
+              <p id="homePlayer4">H4</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="h4r1"></p>
+              <p id="h4r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="h4r2"></p>
+              <p id="h4r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="h4r3"></p>
+              <p id="h4r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="h4r4"></p>
+              <p id="h4r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="h4All"></p>
+              <p id="h4AllP"></p>
+            </div>
 
-          <!-- Hier beginnen die Rundenspiele -->
+            <div class="playerResult">
+              <p id="homeHE1">HE1</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="he1r1"></p>
+              <p id="he1r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="he1r2"></p>
+              <p id="he1r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="he1r3"></p>
+              <p id="he1r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="he1r4"></p>
+              <p id="he1r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="he1All"></p>
+              <p id="he1AllP"></p>
+            </div>
 
-          <div class="round">
-            <p>Runde 1</p>
-          </div>
+            <div class="playerResult">
+              <p id="homeHE2">HE2</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="he2r1"></p>
+              <p id="he2r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="he2r2"></p>
+              <p id="he2r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="he2r3"></p>
+              <p id="he2r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="he2r4"></p>
+              <p id="he2r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="he2All"></p>
+              <p id="he2AllP"></p>
+            </div>
 
-          <div class="gmpl-container" data-header="r1g1">
-            <p class="gmpl-GM1" id="r1g1"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container" data-header="r1g2">
-            <p class="gmpl-GM1" id="r1g2"></p>
-             <p class="result"></p>
-          </div>
-          <div class="gmpl-container" data-header="r1g3">
-            <p class="gmpl-GM1" id="r1g3"></p>
-             <p class="result"></p>
-          </div>
-          <div class="gmpl-container" data-header="r1g4">
-            <p class="gmpl-GM1" id="r1g4"></p>
-             <p class="result"></p>
-          </div>
+            <!-- gesamt Container -->
 
-          <div class="round">
-            <p>Runde 2</p>
+            <div class="playerField playerFieldAll">
+              <p>Einzel Gesamt:</p>
+              <p id="he2All"></p>
+              <p id="he2AllP"></p>
+            </div>
           </div>
+          <!-- hier beginnen die runden des gast teams -->
 
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r2g1" id="r2g1"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r2g2" id="r2g2"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r2g3" id="r2g3"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r2g4" id="r2g4"></p>
-            <p class="result"></p>
-          </div>
+          <div class="resultContainerAll">
+            <div class="TeamRes">
+              <p class="GTeamRes" id="GTeamRes">Gast-Mannschaft</p>
+              <p class="legsSets">Legs - Sets</p>
+            </div>
 
-          <div class="round">
-            <p>Runde 3</p>
-          </div>
+            <div class="playerResult">
+              <p id="guestPlayer1">G1</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="g1r1"></p>
+              <p id="g1r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="g1r2"></p>
+              <p id="g1r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="g1r3"></p>
+              <p id="g1r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="g1r4"></p>
+              <p id="g1r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="g1All"></p>
+              <p id="g1AllP"></p>
+            </div>
 
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r3g1" id="r3g1"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r3g2" id="r3g2"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r3g3" id="r3g3"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r3g4" id="r3g4"></p>
-            <p class="result"></p>
-          </div>
+            <div class="playerResult">
+              <p id="guestPlayer2">G2</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="g2r1"></p>
+              <p id="g2r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="g2r2"></p>
+              <p id="g2r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="g2r3"></p>
+              <p id="g2r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="g2r4"></p>
+              <p id="g2r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="g2All"></p>
+              <p id="g2AllP"></p>
+            </div>
 
-          <div class="round">
-            <p>Runde 4</p>
-          </div>
+            <div class="playerResult">
+              <p id="guestPlayer3">G3</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="g3r1"></p>
+              <p id="g3r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="g3r2"></p>
+              <p id="g3r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="g3r3"></p>
+              <p id="g3r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="g3r4"></p>
+              <p id="g3r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="g3All"></p>
+              <p id="g3AllP"></p>
+            </div>
 
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r4g1" id="r4g1"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r4g2" id="r4g2"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r4g3" id="r4g3"></p>
-            <p class="result"></p>
-          </div>
-          <div class="gmpl-container">
-            <p class="gmpl-GM1" data-header="r4g4" id="r4g4"></p>
-            <p class="result"></p>
-          </div>
+            <div class="playerResult">
+              <p id="guestPlayer4">G4</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="g4r1"></p>
+              <p id="g4r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="g4r2"></p>
+              <p id="g4r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="g4r3"></p>
+              <p id="g4r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="g4r4"></p>
+              <p id="g4r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="g4All"></p>
+              <p id="g4AllP"></p>
+            </div>
 
-          
+            <div class="playerResult">
+              <p id="guestGE1">GE1</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="ge1r1"></p>
+              <p id="ge1r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="ge1r2"></p>
+              <p id="ge1r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="ge1r3"></p>
+              <p id="ge1r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="ge1r4"></p>
+              <p id="ge1r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="ge1All"></p>
+              <p id="ge1AllP"></p>
+            </div>
+
+            <div class="playerResult">
+              <p id="guestGE2">GE2</p>
+            </div>
+            <div class="playerField">
+              <p>Runde 1:</p>
+              <p id="ge2r1"></p>
+              <p id="ge2r1P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 2:</p>
+              <p id="ge2r2"></p>
+              <p id="ge2r2P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 3:</p>
+              <p id="ge2r3"></p>
+              <p id="ge2r3P"></p>
+            </div>
+            <div class="playerField">
+              <p>Runde 4:</p>
+              <p id="ge2r4"></p>
+              <p id="ge2r4P"></p>
+            </div>
+            <div class="playerField playerFieldAll">
+              <p>Gesamt:</p>
+              <p id="ge2All"></p>
+              <p id="ge2AllP"></p>
+            </div>
+
+            <!-- gesamt Container -->
+
+            <div class="playerField playerFieldAll">
+              <p>Einzel Gesamt:</p>
+              <p id="he2All"></p>
+              <p id="he2AllP"></p>
+            </div>
+          </div>
         </div>
 
-        <!-- Hier beginnen die Ergebnise des Heim teams -->
-
-        <div class="resultContainerAll">
-          <div class="TeamRes">
-            <p class="HTeamRes" id="HTeamRes">Heim-Mannschaft</p>
-            <p class="legsSets">Legs - Sets</p>
-          </div>
-          <div class="playerResult">
-            <p id="homePlayer1">H1</p>
-          </div>
-          <div class="playerField" data-header="h1r1">
-            <p>Runde 1:</p>
-            <p id="h1r1"></p>
-            <p id="h1r1P"></p>
-          </div>
-          <div class="playerField" data-header="h1r2">
-            <p>Runde 2:</p>
-            <p id="h1r2"></p>
-            <p id="h1r2P"></p>
-          </div>
-          <div class="playerField" data-header="h1r3">
-            <p>Runde 3:</p>
-            <p id="h1r3"></p>
-            <p id="h1r3P"></p>
-          </div>
-          <div class="playerField" data-header="h1r4">
-            <p>Runde 4:</p>
-            <p id="h1r4"></p>
-            <p id="h1r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll" data-header="h1All">
-            <p>Gesamt:</p>
-            <p id="h1All"></p>
-            <p id="h1AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="homePlayer2">H2</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="h2r1"></p>
-            <p id="h2r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="h2r2"></p>
-            <p id="h2r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="h2r3"></p>
-            <p id="h2r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="h2r4"></p>
-            <p id="h2r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="h2All"></p>
-            <p id="h2AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="homePlayer3">H3</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="h3r1"></p>
-            <p id="h3r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="h3r2"></p>
-            <p id="h3r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="h3r3"></p>
-            <p id="h3r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="h3r4"></p>
-            <p id="h3r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="h3All"></p>
-            <p id="h3AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="homePlayer4">H4</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="h4r1"></p>
-            <p id="h4r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="h4r2"></p>
-            <p id="h4r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="h4r3"></p>
-            <p id="h4r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="h4r4"></p>
-            <p id="h4r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="h4All"></p>
-            <p id="h4AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="homeHE1">HE1</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="he1r1"></p>
-            <p id="he1r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="he1r2"></p>
-            <p id="he1r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="he1r3"></p>
-            <p id="he1r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="he1r4"></p>
-            <p id="he1r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="he1All"></p>
-            <p id="he1AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="homeHE2">HE2</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="he2r1"></p>
-            <p id="he2r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="he2r2"></p>
-            <p id="he2r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="he2r3"></p>
-            <p id="he2r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="he2r4"></p>
-            <p id="he2r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="he2All"></p>
-            <p id="he2AllP"></p>
-          </div>
-
-          <!-- gesamt Container -->
-
-          <div class="playerField playerFieldAll">
-            <p>Einzel Gesamt:</p>
-            <p id="he2All"></p>
-            <p id="he2AllP"></p>
-          </div>
-         
-          
-          
-        </div>
-        <!-- hier beginnen die runden des gast teams -->
-
-        <div class="resultContainerAll">
-          <div class="TeamRes">
-            <p class="GTeamRes" id="GTeamRes">Gast-Mannschaft</p>
-            <p class="legsSets">Legs - Sets</p>
-          </div>
-
-          <div class="playerResult">
-            <p id="guestPlayer1">G1</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="g1r1"></p>
-            <p id="g1r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="g1r2"></p>
-            <p id="g1r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="g1r3"></p>
-            <p id="g1r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="g1r4"></p>
-            <p id="g1r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="g1All"></p>
-            <p id="g1AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="guestPlayer2">G2</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="g2r1"></p>
-            <p id="g2r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="g2r2"></p>
-            <p id="g2r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="g2r3"></p>
-            <p id="g2r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="g2r4"></p>
-            <p id="g2r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="g2All"></p>
-            <p id="g2AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="guestPlayer3">G3</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="g3r1"></p>
-            <p id="g3r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="g3r2"></p>
-            <p id="g3r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="g3r3"></p>
-            <p id="g3r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="g3r4"></p>
-            <p id="g3r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="g3All"></p>
-            <p id="g3AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="guestPlayer4">G4</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="g4r1"></p>
-            <p id="g4r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="g4r2"></p>
-            <p id="g4r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="g4r3"></p>
-            <p id="g4r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="g4r4"></p>
-            <p id="g4r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="g4All"></p>
-            <p id="g4AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="guestGE1">GE1</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="ge1r1"></p>
-            <p id="ge1r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="ge1r2"></p>
-            <p id="ge1r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="ge1r3"></p>
-            <p id="ge1r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="ge1r4"></p>
-            <p id="ge1r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="ge1All"></p>
-            <p id="ge1AllP"></p>
-          </div>
-
-          <div class="playerResult">
-            <p id="guestGE2">GE2</p>
-          </div>
-          <div class="playerField">
-            <p>Runde 1:</p>
-            <p id="ge2r1"></p>
-            <p id="ge2r1P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 2:</p>
-            <p id="ge2r2"></p>
-            <p id="ge2r2P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 3:</p>
-            <p id="ge2r3"></p>
-            <p id="ge2r3P"></p>
-          </div>
-          <div class="playerField">
-            <p>Runde 4:</p>
-            <p id="ge2r4"></p>
-            <p id="ge2r4P"></p>
-          </div>
-          <div class="playerField playerFieldAll">
-            <p>Gesamt:</p>
-            <p id="ge2All"></p>
-            <p id="ge2AllP"></p>
-          </div>
-
-          <!-- gesamt Container -->
-
-          <div class="playerField playerFieldAll">
-            <p>Einzel Gesamt:</p>
-            <p id="he2All"></p>
-            <p id="he2AllP"></p>
-          </div>
-            
-          
-         
-        </div>
-        
-      </div>
-
-       <div class="teamGame">
+        <div class="teamGame">
           <p>Teamspiel</p>
           <div class="teamGameBox">
             <div class="teamGamePlayersHome">Heimspieler 1</div>
             <div class="teamGamePlayersHome">Heimspieler 2</div>
             <div class="teamGamePlayersGuest">Gastspieler 1</div>
             <div class="teamGamePlayersGuest">Gastspieler 2</div>
-           
-            
           </div>
         </div>
 
         <dialog id="choosePlayerDialog">
-            <select id="myDropdown" size="8" style="display:none;"></select>
-            <button id="choosePlayerDialogBtn">Close</button>
+          <select id="myDropdown" size="8" style="display: none"></select>
+          <button id="choosePlayerDialogBtn">Close</button>
         </dialog>
 
         <dialog class="signatureDialog">
-          
-            <h1>Unterschrift</h1>
+          <h1>Unterschrift</h1>
 
-            <canvas height="200" width="600" class="signature-pad"> </canvas>
+          <canvas height="200" width="600" class="signature-pad"> </canvas>
 
-            <p>
-              <a href="#" class="clear-btn">clear</a>
-            </p>
+          <p>
+            <a href="#" class="clear-btn">clear</a>
+          </p>
 
-            <button class="submit-btn">OK</button>
-            <button class="close-btn">Close</button>
-          
-
+          <button class="submit-btn">OK</button>
+          <button class="close-btn">Close</button>
         </dialog>
-           
+
         <footer>
-            <div class="footerContainer">
-
-              <div class="footerDivs">
-                <p>Legs Gesamt</p>
-                <div class="footerPoints">
-                  <p>Heim</p>                  
-                  <p>Gast</p>
-                </div>
-                <div class="footerPoints">
-                  <p id="footerLegsHome"></p>
-                  <p>:</p>
-                  <p id="footerLegsGuest"></p>
-                </div>
-                
-                <div class="signature">
-                  Signatur
-                </div>
+          <div class="footerContainer">
+            <div class="footerDivs">
+              <p>Legs Gesamt</p>
+              <div class="footerPoints">
+                <p>Heim</p>
+                <p>Gast</p>
+              </div>
+              <div class="footerPoints">
+                <p id="footerLegsHome"></p>
+                <p>:</p>
+                <p id="footerLegsGuest"></p>
               </div>
 
-              <div class="footerDivs">
-                <p>Sets Gesamt</p>
-                <div class="footerPoints">
-                  <p>Heim</p>                  
-                  <p>Gast</p>
-                </div>
-                <div class="footerPoints">
-                  <p id="footerSetsHome"></p>
-                  <p>:</p>
-                  <p id="footerSetsGuest"></p>
-                </div>
-                
-                <div class="date">
-                 
-                </div>
-              </div>
-
-              <div class="footerDivs">
-                <p>Punkte</p>
-                 <div class="footerPoints">
-                  <p>Heim</p>                  
-                  <p>Gast</p>
-                </div>
-                <div class="footerPoints">
-                  <p id="footerPointsHome"></p>
-                  <p>:</p>
-                  <p id="footerPointsGuest"></p>
-                </div>
-               
-                <div class="signature">
-                  Signature
-                </div>
-              </div>
+              <div class="signature">Signatur</div>
             </div>
-              
 
-              
+            <div class="footerDivs">
+              <p>Sets Gesamt</p>
+              <div class="footerPoints">
+                <p>Heim</p>
+                <p>Gast</p>
+              </div>
+              <div class="footerPoints">
+                <p id="footerSetsHome"></p>
+                <p>:</p>
+                <p id="footerSetsGuest"></p>
+              </div>
+
+              <div class="date"></div>
+            </div>
+
+            <div class="footerDivs">
+              <p>Punkte</p>
+              <div class="footerPoints">
+                <p>Heim</p>
+                <p>Gast</p>
+              </div>
+              <div class="footerPoints">
+                <p id="footerPointsHome"></p>
+                <p>:</p>
+                <p id="footerPointsGuest"></p>
+              </div>
+
+              <div class="signature">Signature</div>
+            </div>
+          </div>
         </footer>
       </div>
     </div>

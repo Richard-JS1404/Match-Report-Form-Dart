@@ -194,9 +194,48 @@ input::-webkit-inner-spin-button {
   width: 250px;
   height: 30px;
   display: flex;
+  justify-content: space-between;
+  padding: 0px 5px 0px 5px;
   align-items: center;
   margin: 2px;
   color: rgba(114, 242, 137, 0.798);
+}
+
+@keyframes medalSpin {
+  from {
+    transform: rotateY(0deg);
+  } /* Start: Keine Drehung */
+  to {
+    transform: rotateY(360deg);
+  } /* Ende: Eine volle Drehung */
+}
+
+.captainImg {
+  width: 16px;
+  animation: medalSpin 10s linear infinite;
+  transform-origin: center;
+}
+
+.changePlayerImg {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg); /* Drehung um 360 Grad */
+  }
+}
+
+.changePlayerImg:hover {
+  animation-name: rotate-slow;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform: translateZ(20px);
 }
 
 .playerPosition2 {
@@ -383,4 +422,5 @@ input::-webkit-inner-spin-button {
   height: 100%;
   width: 100%;
   cursor: pointer;
+  padding-bottom: 1rem;
 }
