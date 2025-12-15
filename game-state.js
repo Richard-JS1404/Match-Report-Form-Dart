@@ -8,6 +8,8 @@ const GameState = {
   homeSubstitudePlayer: [],
   guestSubstitudePlayer: [],
 
+  teamGameResults: {},
+
   // Spielerwechsel: { h1: "he1", g2: "ge2" }
   activePlayerMap: {},
 
@@ -43,6 +45,7 @@ function initMatchResults() {
     "r4g2",
     "r4g3",
     "r4g4",
+    "teamGame",
   ];
 
   rounds.forEach((roundId) => {

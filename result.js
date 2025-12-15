@@ -116,6 +116,7 @@ const resultMapAllGPoints = Object.fromEntries(
 
 // -------------------- DOM-Elemente --------------------
 const legResult = document.querySelectorAll(".gmpl-container");
+const teamResult = document.querySelector(".teamGameResult");
 const dialogResult = document.getElementById("diaResult");
 const inputResult = document.getElementById("inputResult");
 const inputResult2 = document.getElementById("inputResult2");
@@ -137,6 +138,13 @@ Object.keys(resultMapH).forEach((roundId) => {
   };
 });
 
+teamResult.addEventListener("click", () => {
+  currentResult = teamResult; // Element speichern
+  inputResult.value = "";
+  inputResult2.value = "";
+  dialogResult.show();
+  inputResult.focus();
+});
 // -------------------- EventListener für Ergebnis-Klick --------------------
 legResult.forEach((el) => {
   el.addEventListener("click", () => {
@@ -157,31 +165,51 @@ function extractPlayerId(value) {
 // -------------------- Ergebnis anwenden --------------------
 function applyResult() {
   if (!currentResult) return;
+
   const roundId = currentResult.id;
+
   const homeScore = parseInt(inputResult.value) || 0;
   const guestScore = parseInt(inputResult2.value) || 0;
 
   const homePoints = homeScore >= 2 ? 1 : 0;
   const guestPoints = guestScore >= 2 ? 1 : 0;
 
-  // Spieler aus Maps ermitteln
-  const homePlayerOriginal = roundPlayerMap[roundId].home;
-  const guestPlayerOriginal = roundPlayerMap[roundId].guest;
+  const isTeamGame = currentResult.classList.contains("teamGameResult");
 
-  const homePlayer = getActivePlayer(homePlayerOriginal);
-  const guestPlayer = getActivePlayer(guestPlayerOriginal);
+  if (isTeamGame) {
+    // --- TeamGame Ergebnis ---
+    currentResult.textContent = `${homeScore}:${guestScore}`;
+    currentResult.classList.add("team-result-set"); // optional: CSS für durchgestrichen
 
-  GameState.matchResults[roundId] = {
-    home: homeScore,
-    guest: guestScore,
-    homepoints: homePoints,
-    guestpoints: guestPoints,
-    homePlayer: homePlayerOriginal,
-    guestPlayer: guestPlayerOriginal,
-  };
+    // In GameState speichern
+    GameState.teamGameResults = {
+      home: homeScore,
+      guest: guestScore,
+      homepoints: homePoints,
+      guestpoints: guestPoints,
+    };
+  } else {
+    // Spieler aus Maps ermitteln
+    const homePlayerOriginal = roundPlayerMap[roundId].home;
+    const guestPlayerOriginal = roundPlayerMap[roundId].guest;
+
+    const homePlayer = getActivePlayer(homePlayerOriginal);
+    const guestPlayer = getActivePlayer(guestPlayerOriginal);
+
+    GameState.matchResults[roundId] = {
+      home: homeScore,
+      guest: guestScore,
+      homepoints: homePoints,
+      guestpoints: guestPoints,
+      homePlayer: homePlayer,
+      guestPlayer: guestPlayer,
+    };
+  }
 
   // Einzelspieler-Resultate aktualisieren
-  currentResult2.textContent = `${homeScore}:${guestScore}`;
+  if (currentResult2) {
+    currentResult2.textContent = `${homeScore}:${guestScore}`;
+  }
 
   function resolveResultId(map, roundId) {
     const baseId = map[roundId];
@@ -218,6 +246,8 @@ function applyResult() {
   // Gesamtwerte aller Spieler aktualisieren
   updateAllPlayerLegsAndPoints();
   updateFooterScores();
+  updateFooterScores1();
+  console.log(GameState.teamGameResults);
 
   // Input zurücksetzen und Dialog schließen
   inputResult.value = "";
@@ -233,6 +263,8 @@ dialogResult.addEventListener("keydown", (event) => {
     applyResult();
   }
 });
+
+console.log(GameState.matchResults);
 
 // -------------------- Input Validierung --------------------
 document.addEventListener("DOMContentLoaded", () => {
@@ -252,6 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+/*
 // -------------------- Spieler Summierung --------------------
 function updateAllPlayerLegsAndPoints() {
   const players = [
@@ -269,52 +302,112 @@ function updateAllPlayerLegsAndPoints() {
     "ge2",
   ];
 
-  // Totals initialisieren (für Originalspieler)
-  const totals = {};
-  players.forEach((p) => {
-    totals[p] = { home: 0, guest: 0, homePoints: 0, guestPoints: 0 };
+  const createTotals = () => ({
+    scored: 0,
+    conceded: 0,
+    points: 0,
+    concededPoints: 0,
   });
 
-  // Alle Runden durchgehen und Originalspieler summieren
+  const totals = {};
+  players.forEach((p) => (totals[p] = createTotals()));
+
+  // --- Matches auswerten ---
   for (const roundId in GameState.matchResults) {
     const r = GameState.matchResults[roundId];
     if (!r || !r.homePlayer || !r.guestPlayer) continue;
 
-    const homeKey = r.homePlayer; // Originalspieler
-    const guestKey = r.guestPlayer; // Originalspieler
+    const home = r.homePlayer;
+    const guest = r.guestPlayer;
 
-    if (!totals[homeKey])
-      totals[homeKey] = { home: 0, guest: 0, homePoints: 0, guestPoints: 0 };
-    if (!totals[guestKey])
-      totals[guestKey] = { home: 0, guest: 0, homePoints: 0, guestPoints: 0 };
+    // Heimspieler
+    totals[home].scored += r.home;
+    totals[home].conceded += r.guest;
+    totals[home].points += r.homepoints;
+    totals[home].concededPoints += r.guestpoints;
 
-    totals[homeKey].home += r.home;
-    totals[homeKey].guest += r.guest;
-    totals[homeKey].homePoints += r.homepoints;
-    totals[homeKey].guestPoints += r.guestpoints;
-
-    totals[guestKey].guest += r.guest;
-    totals[guestKey].home += r.home;
-    totals[guestKey].guestPoints += r.guestpoints;
-    totals[guestKey].homePoints += r.homepoints;
+    // Gastspieler
+    totals[guest].scored += r.guest;
+    totals[guest].conceded += r.home;
+    totals[guest].points += r.guestpoints;
+    totals[guest].concededPoints += r.homepoints;
   }
 
-  // DOM-Felder aktualisieren
+  // --- Anzeige ---
   players.forEach((p) => {
-    // Für Anzeige prüfen, ob Spieler aktuell getauscht wurde
     const displayPlayer = GameState.activePlayerMap[p] || p;
+    const t = totals[p];
+    if (!t) return;
 
-    // Legs
-    const elLegs = document.getElementById(`${displayPlayer}All`);
-    if (elLegs && totals[p]) {
-      elLegs.textContent = `${totals[p].home}:${totals[p].guest}`;
+    const legsEl = document.getElementById(`${displayPlayer}All`);
+    const pointsEl = document.getElementById(`${displayPlayer}AllP`);
+
+    if (legsEl) {
+      legsEl.textContent = `${t.scored}:${t.conceded}`;
     }
 
-    // Points
-    const elPoints = document.getElementById(`${displayPlayer}AllP`);
-    if (elPoints && totals[p]) {
-      elPoints.textContent = `${totals[p].homePoints}:${totals[p].guestPoints}`;
+    if (pointsEl) {
+      pointsEl.textContent = `${t.points}:${t.concededPoints}`;
     }
+  });
+}
+
+*/
+
+function updateAllPlayerLegsAndPoints() {
+  const players = [
+    "h1",
+    "h2",
+    "h3",
+    "h4",
+    "he1",
+    "he2",
+    "g1",
+    "g2",
+    "g3",
+    "g4",
+    "ge1",
+    "ge2",
+  ];
+
+  const createTotals = () => ({
+    scored: 0,
+    conceded: 0,
+    points: 0,
+    concededPoints: 0,
+  });
+
+  const totals = {};
+  players.forEach((p) => (totals[p] = createTotals()));
+
+  // --- NUR nach gespeicherten Spielern summieren ---
+  for (const roundId in GameState.matchResults) {
+    const r = GameState.matchResults[roundId];
+    if (!r || !r.homePlayer || !r.guestPlayer) continue;
+
+    // Heimspieler
+    totals[r.homePlayer].scored += r.home;
+    totals[r.homePlayer].conceded += r.guest;
+    totals[r.homePlayer].points += r.homepoints;
+    totals[r.homePlayer].concededPoints += r.guestpoints;
+
+    // Gastspieler
+    totals[r.guestPlayer].scored += r.guest;
+    totals[r.guestPlayer].conceded += r.home;
+    totals[r.guestPlayer].points += r.guestpoints;
+    totals[r.guestPlayer].concededPoints += r.homepoints;
+  }
+
+  // --- Anzeige ---
+  players.forEach((p) => {
+    const t = totals[p];
+    if (!t) return;
+
+    const legsEl = document.getElementById(`${p}All`);
+    const pointsEl = document.getElementById(`${p}AllP`);
+
+    if (legsEl) legsEl.textContent = `${t.scored}:${t.conceded}`;
+    if (pointsEl) pointsEl.textContent = `${t.points}:${t.concededPoints}`;
   });
 }
 
@@ -346,9 +439,24 @@ function dialogChoosePlayer(targetEl) {
   dropDown.onchange = () => {
     currentPlayer = dropDown.value;
     targetEl.textContent = currentPlayer;
+
+    // Map aktualisieren
+    const base = extractPlayerId(targetEl.id)
+      .replace(/^he/, "h")
+      .replace(/^ge/, "g");
+    GameState.activePlayerMap[base] = currentPlayer;
+
     dropDown.style.display = "none";
     dialog.close();
   };
+  /*
+  dropDown.onchange = () => {
+    currentPlayer = dropDown.value;
+    targetEl.textContent = currentPlayer;
+    dropDown.style.display = "none";
+    dialog.close();
+  };
+  */
 }
 
 chooseHomePlayer.forEach((el) =>
